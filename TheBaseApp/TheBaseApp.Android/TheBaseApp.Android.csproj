@@ -44,11 +44,6 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TheBaseApp\TheBaseApp.csproj">
-      <Name>TheBaseApp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="NativeUiFragment.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
