@@ -12,19 +12,19 @@ using Xamarin.Forms.Platform.Android;
 
 namespace TheBaseApp.Droid
 {
-	[Activity (Label = "TheBaseApp.Android", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity (Label = "Mixed Android App", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
 
 		protected override void OnCreate (Bundle bundle)
 		{
-			base.OnCreate (bundle);
+		    RequestWindowFeature(WindowFeatures.NoTitle);
+            base.OnCreate (bundle);
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
 		    var ft = FragmentManager.BeginTransaction();
-		    //ft.Replace(Resource.Id.base_framelayout, new NativeUiFragment(), "main");
 		    ft.Replace(Resource.Id.base_framelayout, InitXamarinForm(), "main");
 		    ft.Commit();
 		}
