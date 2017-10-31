@@ -6,6 +6,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using EmebedXamarinForm;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace TheBaseApp.Droid
 {
@@ -21,9 +24,16 @@ namespace TheBaseApp.Droid
 			SetContentView (Resource.Layout.Main);
 
 		    var ft = FragmentManager.BeginTransaction();
-		    ft.Replace(Resource.Id.base_framelayout, new NativeUiFragment(), "main");
+		    //ft.Replace(Resource.Id.base_framelayout, new NativeUiFragment(), "main");
+		    ft.Replace(Resource.Id.base_framelayout, InitXamarinForm(), "main");
 		    ft.Commit();
 		}
+
+	    private Fragment InitXamarinForm()
+	    {
+	        Forms.Init(this, null);
+	        return new XamarinFormPage().CreateFragment(this);
+	    }
 	}
 }
 

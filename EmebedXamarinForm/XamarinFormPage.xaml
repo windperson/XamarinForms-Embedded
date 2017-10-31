@@ -8,7 +8,12 @@
             <Label
                 HorizontalOptions="CenterAndExpand"
                 Text="Embedded Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" />
+                VerticalOptions="Center" />
+            <BoxView
+                HeightRequest="30"
+                WidthRequest="30"
+                HorizontalOptions="Center"
+                Color="Aqua" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
