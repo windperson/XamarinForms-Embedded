@@ -1,5 +1,7 @@
-﻿using Foundation;
+﻿using EmebedXamarinForm;
+using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace TheBaseApp.iOS
 {
@@ -19,8 +21,29 @@ namespace TheBaseApp.iOS
 		{
 			// Override point for customization after application launch.
 			// If not required for your application you can safely delete this method
+
+            //#1 init Xamarin Form
+            Forms.Init();
+
+            //#2 Create UIViewController using Xamarin Forms extension method and
+		    var viewController = InitXamarinFormController();
+
+            //#3 Set UIWindows's RootViewController
+		    if (Window == null)
+		    {
+		        Window = new UIWindow(UIScreen.MainScreen.Bounds);
+		    }
+		    Window.RootViewController = viewController;
+            Window.MakeKeyAndVisible();
+
 			return true;
 		}
+
+	    private UIViewController InitXamarinFormController()
+	    {
+	        return new XamarinFormPage().CreateViewController();
+
+	    }
 
 		public override void OnResignActivation (UIApplication application)
 		{
