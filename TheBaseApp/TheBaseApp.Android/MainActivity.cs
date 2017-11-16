@@ -9,6 +9,7 @@ using Android.OS;
 using EmebedXamarinForm;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using System.Threading.Tasks;
 
 namespace TheBaseApp.Droid
 {
@@ -18,6 +19,9 @@ namespace TheBaseApp.Droid
 
 		protected override void OnCreate (Bundle bundle)
 		{
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+
 		    RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate (bundle);
 
@@ -25,11 +29,22 @@ namespace TheBaseApp.Droid
 			SetContentView (Resource.Layout.Main);
 
 		    var ft = FragmentManager.BeginTransaction();
-		    ft.Replace(Resource.Id.base_framelayout, InitXamarinForm(), "main");
+		    ft.Replace(Resource.Id.base_framelayout, InitXamarinFormFragment(), "main");
 		    ft.Commit();
 		}
 
-	    private Fragment InitXamarinForm()
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            throw e.ExceptionObject as Exception;
+        }
+
+        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            throw e.Exception;
+        }
+
+        private Fragment InitXamarinFormFragment()
 	    {
 	        Forms.Init(this, null);
 	        return new XamarinFormPage().CreateFragment(this);
