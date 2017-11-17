@@ -23,27 +23,28 @@ namespace TheBaseApp.iOS
 			// If not required for your application you can safely delete this method
 
             //#1 init Xamarin Form
-            Forms.Init();
+            //Forms.Init();
 
             //#2 Create UIViewController using Xamarin Forms extension method and
-		    var viewController = InitXamarinFormController();
+		    //var viewController = InitXamarinFormController();
 
             //#3 Set UIWindows's RootViewController
 		    if (Window == null)
 		    {
 		        Window = new UIWindow(UIScreen.MainScreen.Bounds);
 		    }
-		    Window.RootViewController = viewController;
+            //Window.RootViewController = viewController;
+            Window.RootViewController = new SplitViewController();
             Window.MakeKeyAndVisible();
 
 			return true;
 		}
 
-	    private UIViewController InitXamarinFormController()
-	    {
-	        return new XamarinFormPage().CreateViewController();
+	    //private UIViewController InitXamarinFormController()
+	    //{
+	    //    return new XamarinFormPage().CreateViewController();
 
-	    }
+	    //}
 
 		public override void OnResignActivation (UIApplication application)
 		{
